@@ -69,7 +69,7 @@ function HeroDetails({ hero, index }: Props) {
                 </div>
                 <img className='image' src={hero.image.startsWith('/') ? hero.image : `data:image/png;base64,${hero.image}`} alt='hero-image' />
             </div>
-            <span className='hero description' style={{ whiteSpace: 'pre-line' }}>{hero.description}</span>
+            <span className='hero-description' style={{ whiteSpace: 'pre-line' }}>{hero.description}</span>
         </>
     );
 }

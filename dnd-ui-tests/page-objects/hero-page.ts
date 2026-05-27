@@ -10,7 +10,7 @@ export class HeroPage extends BasePage {
         super(page);
         this.page = page;
 
-        this.heroTitle = this.page.locator('h1.hero-name');
-        this.heroDescription = this.page.locator('p.hero-description');
+        this.heroTitle = this.page.locator('span.name');
+        this.heroDescription = this.page.locator('span.hero-description');
     }
 }
