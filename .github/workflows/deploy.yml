@@ -55,4 +55,4 @@ jobs:
           echo '{"selfhosted": true, "url": ""}' > testsettings.json
 
       - name: run integration tests
-        run: dotnet test --project dnd-api-integrationtests/DnD.API.IntegrationTests.csproj
+        run: dotnet test dnd-api-integrationtests/DnD.API.IntegrationTests.csproj
