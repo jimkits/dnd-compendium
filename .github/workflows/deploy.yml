@@ -47,9 +47,6 @@ jobs:
   integration-tests:
     runs-on: ubuntu-latest
     needs: build
-    defaults:
-      run:
-        working-directory: dnd-api-integrationtests
     steps:
       - uses: actions/checkout@v4
 
@@ -58,4 +55,4 @@ jobs:
           echo '{"selfhosted": true, "url": ""}' > testsettings.json
 
       - name: run integration tests
-        run: dotnet test
+        run: dotnet test --project dnd-api-integrationtests/DnD.API.IntegrationTests.csproj
