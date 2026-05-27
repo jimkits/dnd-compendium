@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dnd-api\dnd.API.csproj" />
+    <ProjectReference Include="..\dnd-api\DnD.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>
