@@ -20,6 +20,9 @@ dnd-api/dnd.db*
 */coverage
 */.auth
 */.env
+*/playwright-report
+*/test-results
+*/test-results.json
 
 # production
 */build
