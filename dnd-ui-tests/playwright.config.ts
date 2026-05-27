@@ -35,7 +35,7 @@ export default defineConfig({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-        storageState: 'dnd-ui-tests/.auth/user.json',
+        storageState: authFile,
       },
       dependencies: ['setup'],
     },
