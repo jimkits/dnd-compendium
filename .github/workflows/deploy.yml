@@ -81,6 +81,9 @@ jobs:
       - name: install dependencies
         run: npm ci
 
+      - name: install browsers
+        run: npx playwright install --with-deps chromium
+
       - name: run ui tests
         run: npx playwright test --project=chromium
         env:
