@@ -5,6 +5,7 @@ import { MainPage } from '../page-objects/main-page';
 import { HeroPage } from '../page-objects/hero-page';
 import { MonsterPage } from '../page-objects/monster-page';
 
+// Typed page objects injected automatically, tests stay focused on behaviour
 type PageObjects = {
     navigationPage: NavigationPage;
     loginPage: LoginPage;

@@ -7,6 +7,8 @@ using DnD.API.Data;
 
 namespace DnD.API.IntegrationTests.Tests;
 
+// Currently used to run tests in collection sequentially
+// TODO: Create classes to handle fixtures 
 [Collection("Authorized Tests")]
 public class HeroControllerTests : BaseTestClass
 {
@@ -27,6 +29,7 @@ public class HeroControllerTests : BaseTestClass
 
         content.Should().NotBeNullOrEmpty();
 
+        // Get all errors at one, not 1 at a time.
         using (new AssertionScope())
         {
             content.Select(x => x.Name).Should().NotBeNullOrEmpty();

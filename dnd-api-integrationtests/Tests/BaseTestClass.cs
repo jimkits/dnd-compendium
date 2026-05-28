@@ -9,7 +9,9 @@ namespace DnD.API.IntegrationTests.Tests;
 
 public class BaseTestClass : IClassFixture<WebApplicationFactory<Program>>, IAsyncLifetime
 {
+    // Spins up the full API in-process, no need for a running service
     private WebApplicationFactory<Program> _factory;
+    // Auth handled once here, inherited by all tests
     public HttpClient _clientWithToken;
     public HttpClient _clientWithoutToken;
     public TestSettings _testSettings;
