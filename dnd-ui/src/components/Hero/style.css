@@ -130,4 +130,6 @@
     color: #f0e6d0;
     text-align: justify;
     font-size: 1.4vmin;
+    width: 100%;
+    max-width: 100vmin;
 }
