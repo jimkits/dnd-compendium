@@ -6,8 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A React frontend for a D&D compendium (browse heroes and monsters). There is no backend code in
 this repo — the API lives in the separate `bitsanis-api` repo (ASP.NET Core/Postgres) and is
-called anonymously (no auth/login) from the browser. `dnd.sln` is a vestigial, empty Visual
-Studio solution file (zero projects) left over from when a C# API used to live here — ignore it.
+called anonymously (no auth/login) from the browser.
 
 Two independent npm projects, no shared root `package.json`:
 
@@ -26,7 +25,7 @@ npm install
 npm start                              # dev server at http://localhost:3000
 npm run build                          # production build
 npm test                               # react-scripts test (Jest, watch mode)
-npm test -- --passWithNoTests          # non-interactive; there are currently no test files
+npm test -- --watchAll=false           # non-interactive, single run
 ```
 
 ### dnd-web-tests
@@ -87,10 +86,10 @@ push — the same check CI's `build` job in `.github/workflows/deploy.yml` runs.
 
 ### CI/CD (`.github/workflows/deploy.yml`)
 
-Single workflow, three jobs in sequence: `build` (npm ci, test, build `dnd-web`) → `deploy`
-(Vercel) → `ui-tests` (Playwright against the deployed Vercel URL, via `BASE_URL: ${{
-vars.VERCEL_URL }}`). There is no separate CI-only workflow — `build` runs on every push/PR to
-`main`, which also gates `deploy`.
+Single workflow, one job: `build` (npm ci, test, build `dnd-web`), on every push/PR to `main`.
+There is no deploy step and no Playwright job in CI — Vercel deployment and the
+Vercel-URL-backed `ui-tests` job were both removed. Playwright (`dnd-web-tests/`) is run
+manually/locally only, not as part of this pipeline.
 
 ## Code Review
 

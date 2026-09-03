@@ -48,15 +48,14 @@ npm test
 
 ```
 src/
-├── assets/
 ├── components/
 │   ├── Header/
 │   ├── Hero/
 │   ├── Home/
 │   ├── Monster/
-│   └── SideNav/
-├── data/
+│   └── Navigation/
 ├── helpers/
+├── config.ts
 ```
 
 ## License
