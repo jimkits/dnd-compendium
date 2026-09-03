@@ -1,0 +1,140 @@
+.heroes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Search bar */
+
+.search{
+    width: 100%;
+    max-width: 100vmin;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.search-wrapper{
+    width: 20vmin;
+    gap: 12px;
+    border: 1px solid #C08423;
+    border-radius: 3px;
+    background: rgba(192, 132, 35, 0.06);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon{
+    font-size: 22px;
+    color: #C08423;
+    line-height: 1;
+    user-select: none;
+}
+
+.search-text{
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #f0e6d0;
+    font-size: 1.3vmin;
+    letter-spacing: 1px;
+    outline: none;
+}
+
+.search-text::placeholder{
+    color: rgba(240, 230, 208, 0.35);
+    letter-spacing: 1px;
+}
+
+
+/* Hero display */
+
+.hero{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100vmin;
+}
+
+.details{
+    align-items: left;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 0px;
+    margin-right: 10px;
+}
+
+.name{
+    text-align: left;
+    color: #C08423;
+    font-size: 4vmin;
+    margin-bottom: 10px;
+}
+
+.trait{
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin-bottom: 4px;
+}
+
+.label-heading{
+    color: #C08423;
+    font-size: 1.6vmin;
+    text-transform: uppercase;
+    white-space: nowrap;
+    width: auto;
+    text-align: left;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.label{
+    color: #C08423;
+    font-size: 1.6vmin;
+    text-transform: uppercase;
+    white-space: nowrap;
+    width: auto;
+    text-align: left;
+    letter-spacing: 1px;
+    margin-left: 10px;
+}
+
+.value{
+    color: #f0e6d0;
+    text-align: left;
+    font-size: 1.4vmin;
+    margin-left: 3px;
+}
+
+.divider{
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(192, 132, 35, 0.7), transparent);
+    margin: 12px 0;
+    width: 100%;
+}
+
+.image{
+    width: 40vmin;
+    height: auto;
+    overflow: hidden;
+}
+
+.description{
+    color: #f0e6d0;
+    text-align: justify;
+    font-size: 1.4vmin;
+    width: 100%;
+    max-width: 100vmin;
+}
+
+.error-message{
+    color: #f0e6d0;
+    font-size: 1.6vmin;
+}
