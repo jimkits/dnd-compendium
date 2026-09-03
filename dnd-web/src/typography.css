@@ -1,27 +1,4 @@
-.hero-list-divider {
-    width: 120vmin;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #b8860b;
-    font-size: 1.2rem;
-    margin: 2rem 0;
-}
-
-.hero-list-divider::before,
-.hero-list-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #b8860b);
-    margin: 0 0.75rem;
-}
-
-.hero-list-divider::after {
-    background: linear-gradient(to left, transparent, #b8860b);
-}
-
-.monster-list-divider {
+.list-divider {
     width: 80vmin;
     display: flex;
     align-items: center;
@@ -31,8 +8,12 @@
     margin: 2rem 0;
 }
 
-.monster-list-divider::before,
-.monster-list-divider::after {
+.list-divider.wide {
+    width: 120vmin;
+}
+
+.list-divider::before,
+.list-divider::after {
     content: '';
     flex: 1;
     height: 1px;
@@ -40,6 +21,6 @@
     margin: 0 0.75rem;
 }
 
-.monster-list-divider::after {
+.list-divider::after {
     background: linear-gradient(to left, transparent, #b8860b);
 }

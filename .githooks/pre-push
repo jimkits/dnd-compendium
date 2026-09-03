@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+cd "$repo_root"
+
+echo "[pre-push] Running frontend tests (npm test in dnd-web)..."
+if ! (cd dnd-web && CI=true npm test -- --watchAll=false); then
+    echo "[pre-push] ERROR: frontend tests failed. Push aborted." >&2
+    exit 1
+fi
+
+echo "[pre-push] All checks passed. Proceeding with push."
+exit 0

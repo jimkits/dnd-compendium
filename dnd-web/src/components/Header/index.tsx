@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './style.css';
 import { Link } from 'react-router';
 import WaitToSetState from '../../helpers/WaitToSetState';
@@ -7,6 +7,13 @@ function Header() {
     const [clicked, setClicked] = useState(false);
     const [navOpen, setNavOpen] = useState(false);
     const navButtonImage = navOpen ? "/images/img-red-dragon-eye-opening.gif" : "/images/img-red-dragon-eye-closing.gif";
+    const reenableTimeout = useRef<number | undefined>(undefined);
+
+    useEffect(() => {
+        return () => {
+            if (reenableTimeout.current) window.clearTimeout(reenableTimeout.current);
+        };
+    }, []);
 
     return (
         <>
@@ -19,7 +26,7 @@ function Header() {
             <button type="button" className="btn-dragon-eye" disabled={clicked}
                 onClick={() => {
                     setClicked(true);
-                    WaitToSetState(setClicked, false, 900);
+                    reenableTimeout.current = WaitToSetState(setClicked, false, 900);
                     setNavOpen(!navOpen);
                 }}>
                 <img key="dragons-eye" className="img-dragon-eye" src={navButtonImage} alt="dragons-eye" />

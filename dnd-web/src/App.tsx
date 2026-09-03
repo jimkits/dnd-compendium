@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import './App.css';
 import Header from "./components/Header";
 import Home from './components/Home';
@@ -22,6 +22,7 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/hero' element={<Hero />} />
               <Route path='/monster' element={<Monster />} />
+              <Route path='*' element={<Navigate to='/' replace />} />
             </Routes>
           </div>
         </div>

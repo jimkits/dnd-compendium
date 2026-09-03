@@ -3,12 +3,12 @@ import config from "../../config";
 export interface MonstersDetails {
     name: string;
     description: string;
-    stats: {
+    stats?: {
         armorClass: string;
         hitPoints: string;
         speed: string;
     };
-    attributes: {
+    attributes?: {
         strength: string;
         dexterity: string;
         constitution: string;

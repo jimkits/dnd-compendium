@@ -1,29 +1,29 @@
 # D&D UI Tests
 
-End-to-end tests for the D&D UI, covering authentication, hero navigation, and monster navigation.
+End-to-end tests for the D&D UI, covering hero navigation and monster navigation.
 
 ## Tech Stack
 
 - Playwright 1.57 with TypeScript
 - Page Object Model pattern
-- Chromium only
+- Firefox only
 
 ## Installation
 
 ### Prerequisites
 
-- Node.js v18 or higher
+- Node.js v20 or higher (CI runs on Node 24)
 - D&D UI running at `http://localhost:3000`
-- D&D API running at `http://localhost:5071`
+- `bitsanis-api` running locally via Docker at `http://localhost:8080`
 
 Install dependencies and browsers:
 
 ```bash
 npm install
-npx playwright install chromium
+npx playwright install firefox
 ```
 
-### Configure Credentials
+### Configure the base URL
 
 Create a `.env` file in the project root:
 
@@ -35,8 +35,6 @@ Edit the `.env` file to some default values:
 
 ```env
 BASE_URL=http://localhost:3000
-DND_USERNAME=admin
-DND_PASSWORD=admin
 ```
 
 > Never commit the `.env` file to version control — it is already in `.gitignore`.
@@ -55,7 +53,7 @@ npx playwright test
 npx playwright test --headed       # headed mode
 npx playwright test --debug        # debug mode
 npx playwright test --ui           # UI mode
-npx playwright test --project=chromium  # single project
+npx playwright test --project=firefox  # single project
 ```
 
 ### View Test Report
@@ -80,29 +78,12 @@ e2e/
 page-objects/
 ```
 
-### Playwright Projects
-
-| Project    | Purpose                                                             |
-| ---------- | ------------------------------------------------------------------- |
-| `setup`    | Runs `auth.setup.ts` first — logs in and verifies logout is visible |
-| `chromium` | Runs all tests after `setup` completes                              |
-
-The `chromium` project declares `dependencies: ['setup']`, so Playwright always validates the login flow before running the main suite.
-
-### Authentication Strategy
-
-The app stores its JWT token in `localStorage`. Playwright's `storageState` captures
-`localStorage`, so `auth.setup.ts` logs in once and saves the browser state to
-`.auth/user.json`. The `chromium` project loads this saved state before each test,
-skipping the login UI entirely.
-
 ### Troubleshooting
 
-| Error                               | Fix                                                                     |
-| ----------------------------------- | ----------------------------------------------------------------------- |
-| "Environment variables must be set" | Create `.env` from `.env.example` and set `DND_USERNAME`/`DND_PASSWORD` |
-| "Browser not found"                 | Run `npx playwright install chromium`                                   |
-| Hero/monster tests fail after setup | Ensure both the UI and API are running before starting tests            |
+| Error                | Fix                                                           |
+| --------------------- | -------------------------------------------------------------- |
+| "Browser not found"   | Run `npx playwright install firefox`                          |
+| Hero/monster tests fail | Ensure both the UI and API are running before starting tests |
 
 ## License
 

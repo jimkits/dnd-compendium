@@ -1,18 +1,16 @@
 import { test, expect } from './fixtures';
 
 test.describe('Monster Tests', () => {
-    const baseUrl: string = process.env.BASE_URL!;
-
     test.beforeEach(async ({ page }) => {
-        await page.goto(baseUrl);
+        await page.goto('/');
     });
 
     test.afterEach(async ({ page }) => {
-        page.close();
+        await page.close();
     });
 
     test('User navigates to the monsters page',
-        { tag: ['@smoke', '@regression'] },
+        { tag: ['@smoke', '@regression', '@prod'] },
         async ({ navigationPage: landingPage, monsterPage }) => {
         // Act
         await landingPage.navigateToMonsters();
@@ -22,5 +20,19 @@ test.describe('Monster Tests', () => {
             await expect(monsterPage.monsterName.first()).toBeVisible();
             await expect(monsterPage.monsterDescription.first()).toBeVisible();
         });
+    });
+
+    test('Shows an error message when the API is unreachable',
+        { tag: ['@regression'] },
+        async ({ page, navigationPage: landingPage, monsterPage }) => {
+        // Arrange
+        await page.route('**/api/compendium/monsters', route => route.abort());
+
+        // Act
+        await landingPage.navigateToMonsters();
+
+        // Assert
+        await expect(monsterPage.errorMessage).toBeVisible();
+        await expect(monsterPage.errorMessage).toHaveText('Unable to reach the server. Please try again later.');
     });
 });

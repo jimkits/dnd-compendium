@@ -1,103 +1,65 @@
 # Dungeons & Dragons Compendium
 
-A full-stack D&D compendium with a React frontend and ASP.NET Core API backend. Browse heroes and monsters with animated navigation, character art, and detailed game statistics.
+A React frontend for a D&D compendium. Browse heroes and monsters with animated navigation, character art, and detailed game statistics. The API backend lives in a separate repo, `bitsanis-api`.
 
 ## Installation
 
 ### Prerequisites
 
-- .NET 10.0 SDK
-- Node.js v18 or higher
+- Node.js v20 or higher (CI builds/deploys on Node 24)
+- `bitsanis-api` running locally (see that repo) — this UI expects it at `http://localhost:8080` by default
 
-### 1. Restore API dependencies
-
-```bash
-cd dnd-api
-dotnet restore
-```
-
-### 2. Install UI dependencies
+### 1. Install UI dependencies
 
 ```bash
-cd dnd-ui
+cd dnd-web
 npm install
 ```
 
-### 3. Install test dependencies
+### 2. Install test dependencies
 
 ```bash
-cd dnd-ui-tests
+cd dnd-web-tests
 npm install
-npx playwright install chromium
+npx playwright install firefox
 ```
 
-### 4. Configure test credentials
+### 3. Enable the pre-push hook (one-time)
 
-Create a `.env` file in `dnd-ui-tests/`:
-
-```env
-BASE_URL=http://localhost:3000
-DND_USERNAME=admin
-DND_PASSWORD=admin
+```bash
+git config core.hooksPath .githooks
 ```
+
+This runs `dnd-web`'s unit tests before every `git push` and aborts the push on failure — the
+same check CI's `build` job runs (see `.github/workflows/deploy.yml`). The hook lives in the
+tracked `.githooks/` directory (not `.git/hooks/`, which isn't version-controlled), so it's
+shareable — but git does **not** apply it automatically on clone. Each contributor opts in once
+per local clone with the command above.
 
 ## Usage
-
-### Start the API
-
-```bash
-cd dnd-api
-dotnet run
-```
-
-API runs at `http://localhost:5071`. Swagger UI available at `/api/swagger` in development.
 
 ### Start the UI
 
 ```bash
-cd dnd-ui
+cd dnd-web
 npm start
 ```
 
-UI runs at `http://localhost:3000`. Navigate to `/login` and sign in with the credentials from `dnd-api/appsettings.Development.json`.
+UI runs at `http://localhost:3000`.
 
 ## Examples
 
 ### Projects
 
-| Project                    | Description           | Port                    |
-| -------------------------- | --------------------- | ----------------------- |
-| `dnd-api`                  | ASP.NET Core REST API | `http://localhost:5071` |
-| `dnd-ui`                   | React frontend        | `http://localhost:3000` |
-| `dnd-ui-tests`             | Playwright e2e tests  |                         |
-| `dnd-api-unittests`        | API unit tests        |                         |
-| `dnd-api-integrationtests` | API integration tests |                         |
-
-### API Endpoints
-
-| Method | Endpoint                      | Auth | Description          |
-| ------ | ----------------------------- | ---- | -------------------- |
-| POST   | `/api/login`                  | No   | Authenticate         |
-| GET    | `/api/hero?hero={type}`       | Yes  | Get hero information |
-| GET    | `/api/hero/image?hero={type}` | Yes  | Get hero image       |
-| GET    | `/api/monsters?size={size}`   | Yes  | Get monsters         |
-| GET    | `/api/ping`                   | No   | Health check         |
-| GET    | `/api/version`                | No   | API version          |
-
-Hero types: `Fighter`, `Sorcerer`, `Cleric`, `Rogue`
-
-Monster sizes: `Small`, `Medium`, `Large`
+| Project          | Description          | Port                    |
+| ---------------- | --------------------- | ----------------------- |
+| `dnd-web`        | React frontend        | `http://localhost:3000` |
+| `dnd-web-tests`  | Playwright e2e tests  |                          |
 
 ### Run tests
 
 ```bash
-cd dnd-api-unittests
-dotnet test
-
-cd dnd-api-integrationtests
-dotnet test
-
-cd dnd-ui-tests
+cd dnd-web-tests
 npx playwright test
 npx playwright test --grep=smoke       # critical path only
 npx playwright test --grep=regression  # full regression suite

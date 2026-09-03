@@ -5,7 +5,7 @@ export interface AllHeroDetails {
     description: string;
     book: string;
     imageFile: string;
-    coreTraits: CoreTraits;
+    coreTraits?: CoreTraits;
 }
 
 export interface CoreTraits {
@@ -16,7 +16,7 @@ export interface CoreTraits {
     weaponProficiencies: string;
     toolProficiencies: string;
     armorTraining: string;
-    startingEquipment: StartingEquipment;
+    startingEquipment?: StartingEquipment;
 }
 
 export interface StartingEquipment {

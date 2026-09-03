@@ -4,8 +4,6 @@ import path from 'path';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
-const authFile = '.auth/user.json';
-
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
@@ -17,7 +15,7 @@ export default defineConfig({
     ['list'],
     ['json', { outputFile: 'test-results.json' }]
   ],
-  
+
   use: {
     baseURL: process.env.BASE_URL,
     trace: 'on-first-retry',
@@ -28,17 +26,8 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'setup',
-      testMatch: /auth\.setup\.ts/,
-      use: { ...devices['Desktop Firefox'] },
-    },
-    {
       name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        storageState: authFile,
-      },
-      dependencies: ['setup'],
+      use: { ...devices['Desktop Firefox'] },
     },
   ],
 });

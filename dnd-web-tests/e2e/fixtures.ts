@@ -1,6 +1,5 @@
 import { test as base } from '@playwright/test';
 import { NavigationPage } from '../page-objects/navigation-page';
-import { LoginPage } from '../page-objects/login-page';
 import { MainPage } from '../page-objects/main-page';
 import { HeroPage } from '../page-objects/hero-page';
 import { MonsterPage } from '../page-objects/monster-page';
@@ -8,7 +7,6 @@ import { MonsterPage } from '../page-objects/monster-page';
 // Typed page objects injected automatically, tests stay focused on behaviour
 type PageObjects = {
     navigationPage: NavigationPage;
-    loginPage: LoginPage;
     mainPage: MainPage;
     heroPage: HeroPage;
     monsterPage: MonsterPage;
@@ -18,11 +16,6 @@ export const test = base.extend<PageObjects>({
     navigationPage: async ({ page }, use) => {
         const navigationPage = new NavigationPage(page);
         await use(navigationPage);
-    },
-
-    loginPage: async ({ page }, use) => {
-        const loginPage = new LoginPage(page);
-        await use(loginPage);
     },
 
     mainPage: async ({ page }, use) => {
