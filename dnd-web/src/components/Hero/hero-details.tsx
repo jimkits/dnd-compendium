@@ -68,7 +68,7 @@ function HeroDetails({ hero, index }: Props) {
                     </div>
                     <hr className='divider' />
                 </div>
-                <img className='image' src={`${config.VITE_API_BASE_URL}/api/compendium/heroes/${encodeURIComponent(hero.name)}/portrait`} alt='hero-image' />
+                <img className='image' src={`${config.REACT_APP_API_BASE_URL}/api/compendium/heroes/${encodeURIComponent(hero.name)}/portrait`} alt='hero-image' />
             </div>
             <span className='description' style={{ whiteSpace: 'pre-line' }}>{hero.description}</span>
         </>

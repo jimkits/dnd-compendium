@@ -19,7 +19,7 @@ export interface MonstersDetails {
 }
 
 export async function GetAllMonsterDetails(): Promise<MonstersDetails[]> {
-    const response = await fetch(`${config.VITE_API_BASE_URL}/api/compendium/monsters`, {
+    const response = await fetch(`${config.REACT_APP_API_BASE_URL}/api/compendium/monsters`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"

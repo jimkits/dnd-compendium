@@ -26,7 +26,7 @@ export interface StartingEquipment {
 }
 
 export async function GetAllHeroDetails(): Promise<AllHeroDetails[]> {
-    const response = await fetch(`${config.VITE_API_BASE_URL}/api/compendium/heroes`, {
+    const response = await fetch(`${config.REACT_APP_API_BASE_URL}/api/compendium/heroes`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"

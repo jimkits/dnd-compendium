@@ -66,12 +66,12 @@ push — the same check CI's `build` job in `.github/workflows/deploy.yml` runs.
   Each defines its own response-shape interface matching `bitsanis-api`'s actual JSON (camelCase
   fields, e.g. `coreTraits.primaryAbility`, `startingEquipment.optionA`) — the API's shape does
   not match the old, retired `dnd-api`'s snake_case contract, so don't assume it does.
-- `src/config.ts` exports `VITE_API_BASE_URL`, read from `process.env.REACT_APP_API_BASE_URL`
+- `src/config.ts` exports `REACT_APP_API_BASE_URL`, read from `process.env.REACT_APP_API_BASE_URL`
   (falls back to `http://localhost:8080`). The field name doesn't match the env var prefix by
   design: this is Create React App, which only exposes `REACT_APP_`-prefixed vars to the
   bundle — a `VITE_`-prefixed env var would silently be `undefined` at runtime.
 - Hero portrait images are fetched from the API directly via `<img src>` pointed at
-  `{VITE_API_BASE_URL}/api/compendium/heroes/{name}/portrait` — not bundled as local assets and
+  `{REACT_APP_API_BASE_URL}/api/compendium/heroes/{name}/portrait` — not bundled as local assets and
   not embedded as base64 in the JSON response.
 - On a failed fetch, pages show only a plain "Unable to reach the server" message — no fake
   placeholder hero/monster card. Don't reintroduce fabricated fallback data on error.
