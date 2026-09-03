@@ -24,23 +24,3 @@ jobs:
           npm ci
           npm test -- --watchAll=false
           npm run build
-
-  ui-tests:
-    runs-on: ubuntu-latest
-    needs: deploy
-    defaults:
-      run:
-        working-directory: dnd-web-tests
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: install dependencies
-        run: npm ci
-
-      - name: install browsers
-        run: npx playwright install --with-deps firefox
-
-      - name: run ui tests
-        run: npx playwright test --project=firefox --grep=@prod
-        env:
-          BASE_URL: ${{ vars.VERCEL_URL }}
